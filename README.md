@@ -1,2 +1,2 @@
 # Algorithm-Visualizer
-Algorithm visualizer is a web app which visualize algorithms in animation to better understanding.
+ Algorithm Visualizer is an application for professional learners. It provides a platform for viewing and sharing any type of algorithm.    Here user learn algorithms through animation in which algorithm is shown in  pseudocode form.    
