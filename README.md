@@ -1,18 +1,53 @@
 # Algorithm-Visualizer
- Algorithm Visualizer is an application for professional learners. It provides a platform for viewing and sharing any type of algorithm.    Here user learn algorithms through animation in which algorithm is shown in  pseudocode form.    
+> Data Structures and Algorithm Visualization Website
 
-Hardware/Software Requirement:
+A project built during our In-house Training.
 
-SOFTWARE:
+![alt text](Sample%20Outputs/s1.PNG "Algorithm-Visualizer Home ")
+ 
+## Synopsis
+Algorithm Visualizer is an application for professional learners. It provides a platform for viewing and sharing any type of algorithm.  Here user learn algorithms through animation in which algorithm is shown in  pseudocode form. Algorithm Visualizer help you grasp the most complex algorithms by having a look at the animations.
 
-BROWSER: HTML5 SUPPORTED BROWSERS (MICROSOFT EDGE, MOZILLA FIREFOX,GOOGLE CHROME)
+## Motivation
 
-Font-End Tool: HTML5, CSS3, JavaScript
+Computer science education is the first obvious application of algorithm animation. Instead of going through the tedious process of explaining using a blackboard relatively complex algorithms to people that have never tackled anything similar before, a computer can be used and the algorithm can be animated, so that the information is conveyed much easier.
 
-Back-End: Java 8, JSP, Servlet
+## Development setup
+Font-End: 
+```sh
+HTML5
+CSS3
+JavaScript
+Jquery
+```
+We've used [particlejs](https://vincentgarreau.com/particles.js/) with few modification for the background purpose.
 
-Server: Apache Tomcat v7.0
+Backend and Server: 
+```sh
+Java 8
+JSP
+Servlet
+Apache Tomcat v7.0
+```
+Database:
+```sh
+ Postgresql
 
-IDE: Eclipse Oxygen
+```
+### Eclipse Oxygen IDE was used to slice and dice the project
 
-Database: Postgresql
+## Contributors
+
+[Ankit Kumar Dwivedi](https://github.com/ankit-kumar-dwivedi)
+
+[Shubham Rana](https://github.com/rana11shubham)
+
+[Rishabh Jain](#)
+
+
+## License
+
+This project is licensed under the Apache License - see the LICENSE.md file for details.
+
+
+
