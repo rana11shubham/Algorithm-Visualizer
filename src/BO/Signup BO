@@ -1,0 +1,46 @@
+package bo;
+
+import java.sql.Statement;
+
+import beans.UserBean;
+import dao.SignupDAO;
+import util.ConnectDB;
+import util.EncryptString;
+import util.RandomURL;
+import util.SendMail;
+
+public class SignupBO {
+
+	public boolean setData(UserBean ub)
+	{
+		String str=ub.getPassword();
+		ub.setPassword(EncryptString.getInstance().getEncrypt(str));
+		String url=RandomURL.getInstance().getRandomUrl(ub.getEmail());
+		String link="http://localhost:8080/AlgorithmVisualiser/Verify_user?url="+url;
+		String msg="Verify Your Email by clicking on the link : "+link;
+		String sub="Verification";
+		if(SendMail.getInstance().sendEmail(ub.getEmail(), msg, sub))
+		{
+			if(SignupDAO.getInstance().setUrlData(ub.getEmail(), url, "verification"))
+			{
+				if(SignupDAO.getInstance().setUserData(ub))
+				{
+					return true;
+				}
+				else
+				{
+					try
+					{
+						Statement s = ConnectDB.getInstance().getConnection().createStatement();
+						s.execute("delete from sent_links where email='"+ub.getEmail()+"'");
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return false;
+	}
+}
