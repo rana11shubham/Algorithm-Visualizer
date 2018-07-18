@@ -1,0 +1,43 @@
+package servlets;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import beans.UserBean;
+import bo.SignupBO;
+
+public class Signup extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession ses = request.getSession();
+		String em=(String)ses.getAttribute("email");
+		if(em==null)
+		{
+			UserBean ub=new UserBean();
+			SignupBO sbo=new SignupBO();
+			ub.setName(request.getParameter("name"));
+			ub.setEmail(request.getParameter("em"));
+			ub.setPassword(request.getParameter("pswd"));
+			ub.setGender(request.getParameter("gender"));
+			ub.setLast_login(null);
+			if(sbo.setData(ub))
+			{
+				response.getWriter().print("s");
+			}
+			else
+			{
+				response.getWriter().print("error");
+			}
+		}
+		else
+		{
+			response.sendRedirect("home.jsp");
+		}
+	}
+
+}
