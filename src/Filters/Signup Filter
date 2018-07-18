@@ -1,0 +1,64 @@
+package filters;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+import dao.SignupDAO;
+
+public class SignupFilter implements Filter{
+
+	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
+			throws IOException, ServletException {
+		
+		String name=arg0.getParameter("name");
+		String email=arg0.getParameter("em");
+		String password=arg0.getParameter("pswd");
+		String c_password=arg0.getParameter("cpswd");
+		PrintWriter out = arg1.getWriter();
+		String gender=arg0.getParameter("gender");
+		final Pattern VALID_EMAIL_ADDRESS_REGEX=Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
+		if(SignupDAO.getInstance().checkUser(email))
+		{
+			out.print("user_already");
+		}
+		if(name!=null)
+		{
+			if(email!=null&&matcher.find())
+			{
+				if(password.equals(c_password)&&password!=null)
+				{
+					if(gender!=null)
+					{
+						arg2.doFilter(arg0, arg1);
+					}
+					else
+					{
+						out.print("gender");
+					}
+				}
+				else
+				{
+					out.print("password");
+				}
+			}
+			else
+			{
+				out.print("email");
+			}
+		}
+		else
+		{
+			out.print("name");
+		}
+		
+	}
+
+}
