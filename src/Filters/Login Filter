@@ -1,0 +1,39 @@
+package filters;
+
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+public class LoginFilter implements Filter{
+
+	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
+			throws IOException, ServletException {
+		
+		String email=arg0.getParameter("em");
+		String password=arg0.getParameter("pswd");
+		final Pattern VALID_EMAIL_ADDRESS_REGEX=Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
+		if(email!=null&&matcher.find())
+		{
+			if(password!=null)
+			{
+				arg2.doFilter(arg0, arg1);
+			}
+			else
+			{
+				arg1.getWriter().print("p");
+			}
+		}
+		else
+		{
+			arg1.getWriter().print("0");
+		}
+	}
+
+}
