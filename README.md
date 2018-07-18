@@ -4,9 +4,15 @@
 Hardware/Software Requirement:
 
 SOFTWARE:
+
 BROWSER: HTML5 SUPPORTED BROWSERS (MICROSOFT EDGE, MOZILLA FIREFOX,GOOGLE CHROME)
+
 Font-End Tool: HTML5, CSS3, JavaScript
+
 Back-End: Java 8, JSP, Servlet
+
 Server: Apache Tomcat v7.0
+
 IDE: Eclipse Oxygen
+
 Database: Postgresql
