@@ -1,5 +1,6 @@
 # Algorithm-Visualizer
 > Data Structures and Algorithm Visualization Website
+
 A project built during our In-house Training.
 
  
@@ -37,13 +38,15 @@ Database:
 ## Contributors
 
 [Ankit Kumar Dwivedi](https://github.com/ankit-kumar-dwivedi)
+
 [Shubham Rana](https://github.com/rana11shubham)
+
 [Rishabh Jain](#)
 
 
+## License
 
-
-
+This project is licensed under the Apache License - see the LICENSE.md file for details.
 
 
 
