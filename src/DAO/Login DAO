@@ -1,0 +1,46 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import beans.UserBean;
+import util.ConnectDB;
+
+public class LoginDAO {
+	private LoginDAO()
+	{
+		
+	}
+	private static LoginDAO ld=new LoginDAO();
+	public static LoginDAO getInstance()
+	{
+		return ld;
+	}
+	public UserBean getLoginData(String email,String pswd)
+	{
+		try
+		{
+			Connection con = ConnectDB.getInstance().getConnection();
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery("select * from user_details where email='"+email+"' and password='"+pswd+"'");
+			if(!rs.isBeforeFirst())
+			{
+				return null;
+			}
+			rs.next();
+			UserBean ub=new UserBean();
+			ub.setEmail(rs.getString(2));
+			ub.setName(rs.getString(1));
+			ub.setGender(rs.getString(4));
+			ub.setLast_login(rs.getString(5));
+			ub.setVerified(rs.getBoolean(6));
+			return ub;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+}
