@@ -1,0 +1,49 @@
+package util;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+public class SendMail {
+	private SendMail()
+	{
+		
+	}
+	private static SendMail es=new SendMail();
+	public static SendMail getInstance()
+	{
+		return es;
+	}
+	public boolean sendEmail(String email,String msg,String sub)
+	{
+		Properties prop = System.getProperties();
+		prop.setProperty("mail.smtp.host", "smtp.gmail.com");
+		prop.setProperty("mail.smtp.auth", "true");
+		prop.setProperty("mail.smtp.port", "465");
+		prop.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		prop.setProperty("mail.smtp.socketFactory.port", "465");
+		prop.setProperty("mail.smtp.socketFactory.fallback", "false");
+		Session ses=Session.getDefaultInstance(prop,null);
+		try
+		{
+			MimeMessage mess = new MimeMessage(ses);
+			mess.setFrom(new InternetAddress("AlgorithmVisualiser"));
+			mess.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			mess.setSubject(sub);
+			mess.setText(msg);
+			Transport trans = ses.getTransport("smtp");
+			trans.connect("smtp.gmail.com","algorithmvisualiser@gmail.com","Fure@123");
+			trans.sendMessage(mess, mess.getAllRecipients());
+			return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
+}
