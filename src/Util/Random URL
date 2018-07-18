@@ -1,0 +1,22 @@
+package util;
+
+import java.util.concurrent.ThreadLocalRandom;
+
+public class RandomURL {
+	private RandomURL()
+	{
+		
+	}
+	private static RandomURL es=new RandomURL();
+	public static RandomURL getInstance()
+	{
+		return es;
+	}
+	public String getRandomUrl(String email)
+	{
+		String str;
+		Integer random=ThreadLocalRandom.current().nextInt(100,10000);
+		str=EncryptString.getInstance().getEncrypt(email)+random;
+		return str;
+	}
+}
